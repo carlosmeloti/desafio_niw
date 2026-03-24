@@ -1,0 +1,76 @@
+package com.example.desafio_niw;
+
+import com.example.desafio_niw.data.Order;
+import com.example.desafio_niw.data.OrderItem;
+import com.example.desafio_niw.data.enums.OrderStatus;
+import com.example.desafio_niw.service.impl.OrderServiceImpl;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+public class OrderServiceFullTest {
+
+    private final OrderServiceImpl service = new OrderServiceImpl();
+
+    @Test
+    void fullServiceDemo() {
+
+        OrderItem item1 = new OrderItem();
+        item1.setProductId("P1");
+        item1.setPrice(new BigDecimal("10.00"));
+        item1.setQuantity(2L);
+
+        OrderItem item2 = new OrderItem();
+        item2.setProductId("P2");
+        item2.setPrice(new BigDecimal("5.00"));
+        item2.setQuantity(3L);
+
+        OrderItem item3 = new OrderItem();
+        item3.setProductId("P3");
+        item3.setPrice(new BigDecimal("20.00"));
+        item3.setQuantity(1L);
+
+        Order o1 = new Order();
+        o1.setId(1L);
+        o1.setCustomerId("C1");
+        o1.setStatus(OrderStatus.PENDING);
+        o1.setItems(List.of(item1, item2));
+
+        Order o2 = new Order();
+        o2.setId(2L);
+        o2.setCustomerId("C2");
+        o2.setStatus(OrderStatus.SHIPPED);
+        o2.setItems(List.of(item3));
+
+        Order o3 = new Order();
+        o3.setId(3L);
+        o3.setCustomerId("C1");
+        o3.setStatus(OrderStatus.PENDING);
+        o3.setItems(List.of(item2));
+
+        List<Order> orders = List.of(o1, o2, o3);
+
+        System.out.println("=== TOTALS ===");
+        orders.forEach(order ->
+                System.out.println("Order " + order.getId() + " total = " + service.calculateTotal(order))
+        );
+
+        System.out.println("\n=== ORDERS BY CUSTOMER C1 ===");
+        List<Order> byCustomer = service.getOrdersByCustomers(orders, "C1");
+        byCustomer.forEach(o -> System.out.println("Order " + o.getId()));
+
+        System.out.println("\n=== GROUP BY STATUS ===");
+        Map<OrderStatus, List<Order>> grouped = service.groupByStatus(orders);
+        grouped.forEach((status, list) -> {
+            System.out.println(status + ":");
+            list.forEach(o -> System.out.println("  Order " + o.getId()));
+        });
+
+        System.out.println("\n=== MOST EXPENSIVE ORDER ===");
+        service.findMostExpensives(orders)
+                .ifPresent(o -> System.out.println("Most expensive is Order " + o.getId()));
+    }
+
+}
