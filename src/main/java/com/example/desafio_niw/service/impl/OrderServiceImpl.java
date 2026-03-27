@@ -39,9 +39,10 @@ public class OrderServiceImpl implements OrderService {
         if (orders == null || customerId == null) {
             return List.of();
         }
-        return orders.stream()
-                .filter(o -> customerId.equals(o.getCustomerId()))
-                .toList();
+        return null;
+//        return orders.stream()
+//                .filter(o -> customerId.equals(o.getCustomerId()))
+//                .toList();
 
     }
 
