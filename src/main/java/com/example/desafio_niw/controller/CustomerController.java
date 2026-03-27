@@ -10,7 +10,8 @@ import java.util.List;
 public interface CustomerController {
 
     @GetMapping
-    List<Customer> findAll();
+    List<Customer> findAll(@RequestParam(defaultValue = "0") int page,
+                           @RequestParam(defaultValue = "10") int size);
     @GetMapping("/{id}")
     Customer findById(@PathVariable Long id);
     @PostMapping

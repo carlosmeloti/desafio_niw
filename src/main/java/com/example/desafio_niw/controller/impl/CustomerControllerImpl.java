@@ -4,6 +4,7 @@ import com.example.desafio_niw.controller.CustomerController;
 import com.example.desafio_niw.data.Customer;
 import com.example.desafio_niw.data.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,12 +15,8 @@ public class CustomerControllerImpl implements CustomerController {
 
     private final CustomerRepository customerRepository;
     @Override
-    public List<Customer> findAll() {
-        // Aqui ta listando tudo.... Tudo que nao devemos fazer, não é mesmo inimigo da performance?
-        // Ja ajusto isso. Uma paginação vai ficar fixe.
-        // Preciso mesmo de um projeto pra ontem. Ja ando a conversar com meu codigo.
-        // Mas hoje é sexta... minha esposa faz anos e acho que vou ter um dia feliz.
-        return customerRepository.findAll();
+    public List<Customer> findAll(int page, int size) {
+        return customerRepository.findAll(PageRequest.of(page, size)).getContent();
     }
 
     @Override
