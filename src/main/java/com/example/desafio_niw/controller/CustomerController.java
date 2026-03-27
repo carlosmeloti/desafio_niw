@@ -16,7 +16,7 @@ public interface CustomerController {
     @PostMapping
     Customer create(@Valid @RequestBody Customer customer);
     @PutMapping("/{id}")
-    Customer update(Long id, Customer customer);
+    Customer update(@PathVariable Long id, @RequestBody Customer customer);
     @DeleteMapping("/{id}")
     void delete(Long id);
 
