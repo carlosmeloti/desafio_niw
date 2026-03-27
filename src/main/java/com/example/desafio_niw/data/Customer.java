@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Entity
-@Table
+@Table(name = "customers")
 @Data
 public class Customer {
 

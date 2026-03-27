@@ -1,0 +1,12 @@
+INSERT INTO customers (name, email) VALUES ('João Silva', 'joao.silva@email.com');
+INSERT INTO customers (name, email) VALUES ('Maria Santos', 'maria.santos@email.com');
+INSERT INTO customers (name, email) VALUES ('Pedro Lima', 'pedro.lima@email.com');
+INSERT INTO customers (name, email) VALUES ('Ana Costa', 'ana.costa@email.com');
+INSERT INTO customers (name, email) VALUES ('Carlos Pereira', 'carlos.pereira@email.com');
+INSERT INTO customers (name, email) VALUES ('Beatriz Rocha', 'beatriz.rocha@email.com');
+INSERT INTO customers (name, email) VALUES ('Tiago Alves', 'tiago.alves@email.com');
+INSERT INTO customers (name, email) VALUES ('Rita Fernandes', 'rita.fernandes@email.com');
+INSERT INTO customers (name, email) VALUES ('Lucas Gomes', 'lucas.gomes@email.com');
+INSERT INTO customers (name, email) VALUES ('Sofia Martins', 'sofia.martins@email.com');
+INSERT INTO customers (name, email) VALUES ('Miguel Sousa', 'miguel.sousa@email.com');
+INSERT INTO customers (name, email) VALUES ('Inês Duarte', 'ines.duarte@email.com');

@@ -15,7 +15,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/customers",
+              "raw": "http://localhost:8080/customers?page=0&size=5",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -23,6 +23,18 @@
               "port": "8080",
               "path": [
                 "customers"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "type": "text"
+                },
+                {
+                  "key": "size",
+                  "value": "5",
+                  "type": "text"
+                }
               ]
             }
           },
