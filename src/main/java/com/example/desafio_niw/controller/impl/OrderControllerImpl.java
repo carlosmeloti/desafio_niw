@@ -21,6 +21,6 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public List<Order> findByCustomerId(Long customerId) {
-        return List.of();
+        return orderService.findByCustomerId(customerId);
     }
 }
