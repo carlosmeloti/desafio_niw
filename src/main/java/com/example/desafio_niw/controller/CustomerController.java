@@ -1,6 +1,7 @@
 package com.example.desafio_niw.controller;
 
 import com.example.desafio_niw.data.Customer;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface CustomerController {
     @GetMapping("/{id}")
     Customer findById(Long id);
     @PostMapping
-    Customer create(Customer customer);
+    Customer create(@Valid @RequestBody Customer customer);
     @PutMapping("/{id}")
     Customer update(Long id, Customer customer);
     @DeleteMapping("/{id}")

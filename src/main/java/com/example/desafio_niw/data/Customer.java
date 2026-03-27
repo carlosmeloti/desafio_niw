@@ -1,5 +1,6 @@
 package com.example.desafio_niw.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -24,6 +25,7 @@ public class Customer {
     @Email
     @Column(nullable = false, unique = true)
     private String email;
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
 }
