@@ -3,6 +3,7 @@ package com.example.desafio_niw.service.impl;
 import com.example.desafio_niw.data.Order;
 import com.example.desafio_niw.data.OrderItem;
 import com.example.desafio_niw.data.enums.OrderStatus;
+import com.example.desafio_niw.data.repository.OrderRepository;
 import com.example.desafio_niw.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
+
+    private final OrderRepository orderRepository;
 
     @Override
     public BigDecimal calculateTotal(Order order) {
@@ -35,15 +38,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrdersByCustomers(List<Order> orders, String  customerId) {
+    public List<Order> getOrdersByCustomers(List<Order> orders, String customerId) {
         if (orders == null || customerId == null) {
             return List.of();
         }
-        return null;
-//        return orders.stream()
-//                .filter(o -> customerId.equals(o.getCustomerId()))
-//                .toList();
 
+        return orders.stream()
+                .filter(order -> order.getCustomer() != null
+                        && order.getCustomer().getId() != null
+                        && customerId.equals(String.valueOf(order.getCustomer().getId())))
+                .toList();
     }
 
     @Override
@@ -53,7 +57,6 @@ public class OrderServiceImpl implements OrderService {
         }
         return orders.stream()
                 .collect(Collectors.groupingBy(Order::getStatus));
-
     }
 
     @Override
@@ -63,5 +66,16 @@ public class OrderServiceImpl implements OrderService {
         }
         return orders.stream()
                 .max(Comparator.comparing(this::calculateTotal));
+    }
+
+    public Order create(Order order) {
+        return orderRepository.save(order);
+    }
+
+    public List<Order> findByCustomerId(Long customerId) {
+        if (customerId == null) {
+            return List.of();
+        }
+        return orderRepository.findByCustomerId(customerId);
     }
 }

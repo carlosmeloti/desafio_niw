@@ -14,4 +14,7 @@ public interface OrderService {
     List<Order> getOrdersByCustomers(List<Order> orders, String customerId);
     Map<OrderStatus, List<Order>> groupByStatus(List<Order> orders);
     Optional<Order> findMostExpensives(List<Order> orders);
+
+    Order create(Order order);
+    List<Order> findByCustomerId(Long customerId);
 }
