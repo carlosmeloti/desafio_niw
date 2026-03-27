@@ -17,4 +17,5 @@ public interface OrderService {
 
     Order create(Order order);
     List<Order> findByCustomerId(Long customerId);
+    List<Order> findAll();
 }

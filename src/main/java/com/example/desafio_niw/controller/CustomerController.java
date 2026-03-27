@@ -12,7 +12,7 @@ public interface CustomerController {
     @GetMapping
     List<Customer> findAll();
     @GetMapping("/{id}")
-    Customer findById(Long id);
+    Customer findById(@PathVariable Long id);
     @PostMapping
     Customer create(@Valid @RequestBody Customer customer);
     @PutMapping("/{id}")
