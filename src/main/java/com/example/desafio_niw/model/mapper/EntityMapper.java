@@ -16,7 +16,6 @@ public interface EntityMapper {
 
     Order OrderDTOtoEntity(OrderDTO dto);
     OrderDTO entityToOrderDTO(Order entity);
-    List<OrderDTO> entityToOrderDTOList(List<Order> entity);
     CustomerDTO entityToCustomerDTO(Customer entity);
     Customer CustomerDTOToEntity(CustomerDTO dto);
     List<CustomerDTO> entityToCustomerDTOList(List<Customer> entity);

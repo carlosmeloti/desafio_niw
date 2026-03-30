@@ -22,7 +22,8 @@ public interface OrderController {
     List<OrderDTO> findByCustomerId(@PathVariable Long customerId);
 
     @GetMapping
-    List<OrderDTO> findAll();
+    List<OrderDTO> findAll(@RequestParam(defaultValue = "0") int page,
+                           @RequestParam(defaultValue = "10") int size);
 
     @GetMapping("/total/{id}")
     BigDecimal calculateTotalOrder(@PathVariable Long id);

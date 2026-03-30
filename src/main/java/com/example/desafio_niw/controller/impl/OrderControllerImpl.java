@@ -5,6 +5,7 @@ import com.example.desafio_niw.data.enums.OrderStatus;
 import com.example.desafio_niw.model.OrderDTO;
 import com.example.desafio_niw.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +33,8 @@ public class OrderControllerImpl implements OrderController {
     }
 
     @Override
-    public List<OrderDTO> findAll() {
-        return orderService.findAll();
+    public List<OrderDTO> findAll(int page, int size) {
+        return orderService.findAllPageable(PageRequest.of(page, size));
     }
 
     @Override

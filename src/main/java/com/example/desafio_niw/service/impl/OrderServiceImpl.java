@@ -9,6 +9,7 @@ import com.example.desafio_niw.model.OrderItemDTO;
 import com.example.desafio_niw.model.mapper.EntityMapper;
 import com.example.desafio_niw.service.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -78,11 +79,22 @@ public class OrderServiceImpl implements OrderService {
         if (customerId == null) {
             return List.of();
         }
-        return entityMapper.entityToOrderDTOList(orderRepository.findByCustomerId(customerId));
+        return orderRepository.findByCustomerId(customerId).stream()
+                .map(entityMapper::entityToOrderDTO)
+                .toList();
+    }
+
+    @Override
+    public List<OrderDTO> findAllPageable(Pageable pageable) {
+        return orderRepository.findAll(pageable).stream()
+                .map(entityMapper::entityToOrderDTO)
+                .toList();
     }
 
     @Override
     public List<OrderDTO> findAll() {
-        return entityMapper.entityToOrderDTOList(orderRepository.findAll());
+        return orderRepository.findAll().stream()
+                .map(entityMapper::entityToOrderDTO)
+                .toList();
     }
 }
