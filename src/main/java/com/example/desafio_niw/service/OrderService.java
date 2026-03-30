@@ -2,6 +2,7 @@ package com.example.desafio_niw.service;
 
 import com.example.desafio_niw.data.Order;
 import com.example.desafio_niw.data.enums.OrderStatus;
+import com.example.desafio_niw.model.OrderDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.Optional;
 
 public interface OrderService {
 
-    BigDecimal calculateTotal(Order order);
-    List<Order> getOrdersByCustomers(List<Order> orders, String customerId);
-    Map<OrderStatus, List<Order>> groupByStatus(List<Order> orders);
-    Optional<Order> findMostExpensives(List<Order> orders);
+    BigDecimal calculateTotal(OrderDTO order);
+    BigDecimal calculateTotalOrder(Long id);
+    Map<OrderStatus, List<OrderDTO>> groupByStatus(List<OrderDTO> orders);
+    Optional<OrderDTO> findMostExpensives(List<OrderDTO> orders);
 
-    Order create(Order order);
-    List<Order> findByCustomerId(Long customerId);
-    List<Order> findAll();
+    OrderDTO create(OrderDTO order);
+    List<OrderDTO> findByCustomerId(Long customerId);
+    List<OrderDTO> findAll();
 }

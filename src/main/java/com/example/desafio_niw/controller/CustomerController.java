@@ -1,6 +1,7 @@
 package com.example.desafio_niw.controller;
 
 import com.example.desafio_niw.data.Customer;
+import com.example.desafio_niw.model.CustomerDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,14 +11,14 @@ import java.util.List;
 public interface CustomerController {
 
     @GetMapping
-    List<Customer> findAll(@RequestParam(defaultValue = "0") int page,
-                           @RequestParam(defaultValue = "10") int size);
+    List<CustomerDTO> findAll(@RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "10") int size);
     @GetMapping("/{id}")
-    Customer findById(@PathVariable Long id);
+    CustomerDTO findById(@PathVariable Long id);
     @PostMapping
-    Customer create(@Valid @RequestBody Customer customer);
+    CustomerDTO create(@Valid @RequestBody CustomerDTO customer);
     @PutMapping("/{id}")
-    Customer update(@PathVariable Long id, @RequestBody Customer customer);
+    CustomerDTO update(@PathVariable Long id, @RequestBody CustomerDTO customer);
     @DeleteMapping("/{id}")
     void delete(Long id);
 

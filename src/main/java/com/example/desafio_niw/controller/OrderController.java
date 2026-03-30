@@ -2,6 +2,9 @@ package com.example.desafio_niw.controller;
 
 import com.example.desafio_niw.data.Order;
 import com.example.desafio_niw.data.enums.OrderStatus;
+import com.example.desafio_niw.model.OrderDTO;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -13,20 +16,20 @@ import java.util.Optional;
 public interface OrderController {
 
     @PostMapping
-    Order create(@RequestBody Order order);
+    ResponseEntity<OrderDTO> create(@Valid @RequestBody OrderDTO order);
 
     @GetMapping("/customer/{customerId}")
-    List<Order> findByCustomerId(@PathVariable Long customerId);
+    List<OrderDTO> findByCustomerId(@PathVariable Long customerId);
 
     @GetMapping
-    List<Order> findAll();
+    List<OrderDTO> findAll();
 
     @GetMapping("/total/{id}")
-    BigDecimal calculateTotal(@PathVariable Long id);
+    BigDecimal calculateTotalOrder(@PathVariable Long id);
 
     @GetMapping("/group-by-status")
-    Map<OrderStatus, List<Order>> groupByStatus();
+    Map<OrderStatus, List<OrderDTO>> groupByStatus();
 
     @GetMapping("/most-expensive")
-    Optional<Order> findMostExpensives();
+    Optional<OrderDTO> findMostExpensives();
 }

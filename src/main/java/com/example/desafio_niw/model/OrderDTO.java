@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class OrderDTO {
-    private Customer customer;
+    private CustomerDTO customer;
     private List<OrderItemDTO> items;
     private OrderStatus status;
 }

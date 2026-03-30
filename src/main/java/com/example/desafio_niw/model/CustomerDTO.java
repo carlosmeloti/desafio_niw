@@ -1,6 +1,6 @@
 package com.example.desafio_niw.model;
 
-import com.example.desafio_niw.data.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -8,5 +8,6 @@ import java.util.List;
 public class CustomerDTO {
     private String name;
     private String email;
-    private List<Order> orders;
+    @JsonIgnore
+    private List<OrderDTO> orders;
 }

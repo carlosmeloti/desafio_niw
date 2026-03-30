@@ -25,7 +25,6 @@ public class Customer {
     @Email
     @Column(nullable = false, unique = true)
     private String email;
-    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
 }
